@@ -16,14 +16,21 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
 
-    // public EmployeeDTO.Response createEmployee(EmployeeDTO.CreateRequest request){
-    //     //validate uniquness
-    //     if (employeeRepository.existsByEmail(request.getEmail())){
-    //         throw new IllegalStateException("Email already exists: " + request.getEmail());
-    //     }
+    public EmployeeDTO.Response createEmployee(EmployeeDTO.CreateRequest request){
+        //validate uniquness
+        if (employeeRepository.existsByEmail(request.getEmail())){
+            throw new IllegalStateException("Email already exists: " + request.getEmail());
+        }
+
+        if (userRepository.existsByUsername(request.getUsername())){
+            throw new IllegalStateException("Username already taken: "+ request.getUsername());
+        }
 
         
-    // }
+
+
+        
+    }
     
 
 
