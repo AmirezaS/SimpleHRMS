@@ -9,6 +9,7 @@ import org.j2ee.simplehrms.model.Position;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,14 +41,14 @@ public class PositionController {
 
     // CREATE 
     // POST /api/positions
-
+    @PostMapping
     public ResponseEntity<PositionResponse> create(
         @Valid @RequestBody CreatePositionRequest request
     ){
         Department department = departmentReository.findById(request.getDepartmentId())
             .orElseThrow();
         
-        if (positionRepository.existsByTitleAndDepartmentIdd(request.getTitle(), request.getDepartmentId())) {
+        if (positionRepository.existsByTitleAndDepartmentId(request.getTitle(), request.getDepartmentId())) {
             throw new IllegalStateException();
         }
 

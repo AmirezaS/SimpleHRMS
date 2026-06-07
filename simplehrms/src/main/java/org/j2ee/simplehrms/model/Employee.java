@@ -95,7 +95,7 @@ public class Employee {
     @Column(name="emergency_contact_name", length=100)
     private String emergencyContactName;
 
-    @Column(name="emergency_contact_name", length=20)
+    @Column(name="emergency_contact_phone", length=20)
     private String emergencyContactPhone;
 
 

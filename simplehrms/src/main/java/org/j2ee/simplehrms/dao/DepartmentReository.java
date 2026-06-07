@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.j2ee.simplehrms.model.Department;
+import org.j2ee.simplehrms.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -19,11 +21,14 @@ public interface DepartmentReository extends JpaRepository<Department, Long>{
 
     boolean existsByCode(String code);
 
-    List<Department> findByActiveTrue();
+    List<Department> findByIsActiveTrue();
 
-    @Query("SELECT d FROM Department d LEFT JOIN FETCH d.employees e " +
-           "WHERE d.isActive = true AND e.status = 'ACTIVE'")
-    List<Department> findAllWithActiveEmployees();
+    // @Query("SELECT d FROM Department d LEFT JOIN FETCH d.employees e " +
+    //        "WHERE d.isActive = true AND  (e IS NULL OR e.status = : status)")
+    // List<Department> findAllWithActiveEmployees(
+    //     @Param("status") Employee.EmploymentStatus status
+    // );
+
     
 
 }

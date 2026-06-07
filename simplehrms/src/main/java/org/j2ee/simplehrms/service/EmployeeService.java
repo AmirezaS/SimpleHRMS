@@ -30,9 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final UserRepository userRepository;
     private final DepartmentReository departmentReository;
     private final PositionRepository positionRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     
 

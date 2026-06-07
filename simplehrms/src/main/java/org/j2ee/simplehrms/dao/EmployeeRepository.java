@@ -22,7 +22,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>, JpaSpe
 
     boolean existsByEmail(String email);
 
-    boolean existByEmployeeCode(String employeeCode);
+    boolean existsByEmployeeCode(String employeeCode);
 
     List<Employee> findByDepartmentId(Long departmentId);
 
@@ -30,41 +30,41 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>, JpaSpe
 
     List<Employee> findByManagerId(Long managerId);
 
-    List<Employee> findByStatus(Employee.EmploymentStatus status);
+    List<Employee> findByEmploymentStatus(Employee.EmploymentStatus status);
 
     Page<Employee> findByDepartmentId(Long departmentId, Pageable pagable);
 
-    @Query("SELECT e FROM Employee e WHERE e.status = 'ACTIVE' " +
-           "AND (LOWER(e.firstName) LIKE LOWER(CONCAT('%', :search, '%')) " +
-           "OR LOWER(e.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
-           "OR LOWER(e.email) LIKE LOWER(CONCAT('%', :search, '%')) " +
-           "OR LOWER(e.employeeCode) LIKE LOWER(CONCAT('%', :search, '%')))")
-    Page<Employee> searchEmployees(@Param("search") String search, Pageable pageable);
+//     @Query("SELECT e FROM Employee e WHERE e.status = 'ACTIVE' " +
+//            "AND (LOWER(e.firstName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+//            "OR LOWER(e.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+//            "OR LOWER(e.email) LIKE LOWER(CONCAT('%', :search, '%')) " +
+//            "OR LOWER(e.employeeCode) LIKE LOWER(CONCAT('%', :search, '%')))")
+//     Page<Employee> searchEmployees(@Param("search") String search, Pageable pageable);
  
-    @Query("SELECT e FROM Employee e WHERE e.department.id = :deptId AND e.status = 'ACTIVE'")
-    List<Employee> findActiveEmployeesByDepartment(@Param("deptId") Long deptId);
+//     @Query("SELECT e FROM Employee e WHERE e.department.id = :deptId AND e.status = 'ACTIVE'")
+//     List<Employee> findActiveEmployeesByDepartment(@Param("deptId") Long deptId);
  
-    @Query("SELECT COUNT(e) FROM Employee e WHERE e.department.id = :deptId AND e.status = 'ACTIVE'")
-    Long countActiveByDepartment(@Param("deptId") Long deptId);
+//     @Query("SELECT COUNT(e) FROM Employee e WHERE e.department.id = :deptId AND e.status = 'ACTIVE'")
+//     Long countActiveByDepartment(@Param("deptId") Long deptId);
  
-    @Query("SELECT COUNT(e) FROM Employee e WHERE e.status = :status")
-    Long countByStatus(@Param("status") Employee.EmploymentStatus status);
+//     @Query("SELECT COUNT(e) FROM Employee e WHERE e.status = :status")
+//     Long countByStatus(@Param("status") Employee.EmploymentStatus status);
  
-    @Query("SELECT e FROM Employee e WHERE e.hireDate BETWEEN :startDate AND :endDate")
-    List<Employee> findByHireDateBetween(@Param("startDate") LocalDate startDate,
-                                         @Param("endDate") LocalDate endDate);
+//     @Query("SELECT e FROM Employee e WHERE e.hireDate BETWEEN :startDate AND :endDate")
+//     List<Employee> findByHireDateBetween(@Param("startDate") LocalDate startDate,
+//                                          @Param("endDate") LocalDate endDate);
  
-    @Query("SELECT e FROM Employee e WHERE MONTH(e.dateOfBirth) = :month AND DAY(e.dateOfBirth) = DAY(CURRENT_DATE)")
-    List<Employee> findBirthdaysToday(@Param("month") int month);
+//     @Query("SELECT e FROM Employee e WHERE MONTH(e.dateOfBirth) = :month AND DAY(e.dateOfBirth) = DAY(CURRENT_DATE)")
+//     List<Employee> findBirthdaysToday(@Param("month") int month);
  
-    @Query("SELECT e FROM Employee e WHERE e.hireDate <= :date AND " +
-           "FUNCTION('TIMESTAMPDIFF', YEAR, e.hireDate, :date) = :years")
-    List<Employee> findByWorkAnniversary(@Param("date") LocalDate date,
-                                          @Param("years") int years);
+//     @Query("SELECT e FROM Employee e WHERE e.hireDate <= :date AND " +
+//            "FUNCTION('TIMESTAMPDIFF', YEAR, e.hireDate, :date) = :years")
+//     List<Employee> findByWorkAnniversary(@Param("date") LocalDate date,
+//                                           @Param("years") int years);
  
-    @Query("SELECT DISTINCT e.department.name, COUNT(e) FROM Employee e " +
-           "WHERE e.status = 'ACTIVE' GROUP BY e.department.name")
-    List<Object[]> countEmployeesByDepartment();
+//     @Query("SELECT DISTINCT e.department.name, COUNT(e) FROM Employee e " +
+//            "WHERE e.status = 'ACTIVE' GROUP BY e.department.name")
+//     List<Object[]> countEmployeesByDepartment();
 
 
 }

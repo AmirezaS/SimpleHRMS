@@ -13,7 +13,7 @@ public interface PositionRepository extends JpaRepository<Position, Long>{
 
     List<Position> findByIsActiveTrue();
 
-    boolean existsByTitleAndDepartmentIdd(String title, Long departmentId);
+    boolean existsByTitleAndDepartmentId(String title, Long departmentId);
 
     
 

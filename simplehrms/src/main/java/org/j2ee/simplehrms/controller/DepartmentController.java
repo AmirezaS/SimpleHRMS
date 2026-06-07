@@ -3,14 +3,15 @@ package org.j2ee.simplehrms.controller;
 import org.j2ee.simplehrms.dto.DepartmentDTO;
 import org.j2ee.simplehrms.service.DepartmentService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 
 // base URL: /api/departments
 // an employee must have a department, so you need to create a department before you can create an employee
@@ -25,7 +26,13 @@ public class DepartmentController {
 
     // CREATE 
     // POST /api/departments
-
+    @PostMapping
+    public String postMethodName(@RequestBody String entity) {
+        //TODO: process POST request
+        
+        return entity;
+    }
+    
     public ResponseEntity<DepartmentDTO.Response> create(
         @Valid @RequestBody DepartmentDTO.CreateRequest request
     ){

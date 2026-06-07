@@ -54,7 +54,7 @@ public class DepartmentService {
             .isActive(d.getIsActive())
             .managerId(d.getManager() != null ? d.getManager().getId() : null)
             .managerName(d.getManager() != null ? d.getManager().getFullName() : null)
-            .employeeCount(employeeRepository.countActiveByDepartment(d.getId()))
+            // .employeeCount(employeeRepository.countActiveByDepartment(d.getId()))
             .build();
     }
 
