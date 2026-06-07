@@ -58,7 +58,7 @@ public class Department{
     @JoinColumn(name="manager_id")
     private Employee manager;
 
-    @OneToMany(mappedBy="dpartment", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="department", fetch=FetchType.LAZY)
     @Builder.Default
     private List<Employee> employees = new ArrayList<>();
 
