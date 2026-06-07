@@ -93,7 +93,7 @@ public class EmployeeService {
         }
         if (roles.isEmpty()) roles.add(User.Role.ROLE_EMPLOYEE);
         
-        User user = user.builder()
+        User user = User.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
             .roles(roles)
